@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 
+//정면이 어디인지를 알려줌.
+
 [RequireComponent(typeof(MeshFilter))]
 public class NormalVisualizer : MonoBehaviour
 {

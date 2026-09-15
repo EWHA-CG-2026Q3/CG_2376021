@@ -31,9 +31,9 @@ public class S05_MyMeshRenderer : MonoBehaviour
 
         // 3. 픽셀 채우기 (실습①. 완료 후 아래 줄로 교체해 체스판도 확인해보세요.)
         //FillBackground(backgroundColor);
-        // FillRandom(); 
-         FillVerticalStripes(patternSize, colorA, colorB); // 실습①
-        // FillCheckerboard(patternSize, colorA, colorB); // 실습②
+        //FillRandom(); 
+        //FillVerticalStripes(patternSize, colorA, colorB); // 실습①
+        FillCheckerboard(patternSize, colorA, colorB); // 실습②
 
         // 4. 변경 사항 반영
         canvasTexture.Apply();
@@ -75,7 +75,8 @@ public class S05_MyMeshRenderer : MonoBehaviour
             // TODO: x를 width로 나눈 몫이 짝수면 colorA, 홀수면 colorB가 되도록
             // isColorA를 올바른 조건식으로 바꾸세요.
             // 힌트: (x / width) % 2 == 0
-            bool isColorA = true; // ← 이 줄을 수정하세요
+            //bool isColorA = true; // ← 이 줄을 수정하세요
+            bool isColorA = (x / width) % 2 == 0;
 
             Color stripeColor = isColorA ? colorA : colorB;
             for (int y = 0; y < canvasHeight; y++)
@@ -95,6 +96,8 @@ public class S05_MyMeshRenderer : MonoBehaviour
                 // 힌트: (x / size) + (y / size) 의 결과를 활용해보세요.
 
                 // 여기에 SetPixel 호출까지 직접 작성하세요.
+                Color checkerColor = ((x / size) + (y / size)) % 2 == 0 ? colorA : colorB;
+                canvasTexture.SetPixel(x, y, checkerColor);
             }
         }
     }

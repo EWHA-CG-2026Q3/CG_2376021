@@ -7,8 +7,8 @@ public class S07_DepthTest2 : MonoBehaviour
     [SerializeField] private int canvasWidth = 256;
     [SerializeField] private int canvasHeight = 256;
 
-    [SerializeField] private Vector3 vertexA1 = new Vector3(100, 180, 0.3f);
-    [SerializeField] private Vector3 vertexB1 = new Vector3(60, 80, 0.3f);
+    [SerializeField] private Vector3 vertexA1 = new Vector3(100, 180, 1.0f);
+    [SerializeField] private Vector3 vertexB1 = new Vector3(60, 80, 1.0f);
     [SerializeField] private Vector3 vertexC1 = new Vector3(180, 80, 0.3f);
     [SerializeField] private Color color1 = new Color(1f, 0.4f, 0.2f, 1f);
 
@@ -46,9 +46,10 @@ public class S07_DepthTest2 : MonoBehaviour
                 depthBuffer[x, y] = float.MaxValue; //여기서 depthbuffer를 카메라에서 가장 먼 값으로 초기화.
 
         // TODO 0: 아래 세 줄의 순서를 원하는 대로 바꿔보세요.
+        // 어차피 z로 보간하고 있으니까 순서는 상관이 없겠지!
+        DrawTriangle(vertexA3, vertexB3, vertexC3, color3);
         DrawTriangle(vertexA1, vertexB1, vertexC1, color1);
         DrawTriangle(vertexA2, vertexB2, vertexC2, color2);
-        DrawTriangle(vertexA3, vertexB3, vertexC3, color3);
 
         canvasTexture.Apply();
         targetImage.texture = canvasTexture;

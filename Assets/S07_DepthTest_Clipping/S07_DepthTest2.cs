@@ -80,9 +80,15 @@ public class S07_DepthTest2 : MonoBehaviour
                 if (isInside)
                 {
                     // TODO 1: w1, w2, w3와 a.z, b.z, c.z를 이용해 보간된 z를 계산하세요.
-                    float interpolatedZ = 0f;
+                    float interpolatedZ = w1 * a.z + w2 * b.z + w3 * c.z;
 
                     // TODO 2: interpolatedZ가 depthBuffer[x, y]보다 작을 때만 갱신하세요.
+                    if (interpolatedZ < depthBuffer[x, y])
+                    {
+                        canvasTexture.SetPixel(x, y, color);
+                        depthBuffer[x, y] = interpolatedZ;
+                    }
+
                 }
             }
         }

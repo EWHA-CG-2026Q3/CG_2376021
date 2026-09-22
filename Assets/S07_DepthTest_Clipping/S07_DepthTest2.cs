@@ -43,7 +43,7 @@ public class S07_DepthTest2 : MonoBehaviour
         depthBuffer = new float[canvasWidth, canvasHeight];
         for (int x = 0; x < canvasWidth; x++)
             for (int y = 0; y < canvasHeight; y++)
-                depthBuffer[x, y] = float.MaxValue;
+                depthBuffer[x, y] = float.MaxValue; //여기서 depthbuffer를 카메라에서 가장 먼 값으로 초기화.
 
         // TODO 0: 아래 세 줄의 순서를 원하는 대로 바꿔보세요.
         DrawTriangle(vertexA1, vertexB1, vertexC1, color1);
@@ -83,6 +83,7 @@ public class S07_DepthTest2 : MonoBehaviour
                     float interpolatedZ = w1 * a.z + w2 * b.z + w3 * c.z;
 
                     // TODO 2: interpolatedZ가 depthBuffer[x, y]보다 작을 때만 갱신하세요.
+                    // z값이 작다는 것은 카메라에 더 가깝다는 의미입니다.
                     if (interpolatedZ < depthBuffer[x, y])
                     {
                         canvasTexture.SetPixel(x, y, color);

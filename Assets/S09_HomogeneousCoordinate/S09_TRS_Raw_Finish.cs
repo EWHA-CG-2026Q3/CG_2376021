@@ -9,6 +9,7 @@ public class S09_TRS_Raw_Finish : MonoBehaviour
     [SerializeField] Vector3 t = new Vector3(3f, 0f, 0f);   // 이동 (Position)
     [SerializeField] float angle = 90f;                      // z축 회전 각도, 도 단위 (Rotation z)
     [SerializeField] Vector3 s = new Vector3(2f, 1f, 1f);    // 스케일 (Scale)
+    [SerializeField] float k = 0.4f;
 
     DiamondMesh diamondMesh;
 
@@ -103,22 +104,36 @@ public class S09_TRS_Raw_Finish : MonoBehaviour
         return new Vector4(result[0], result[1], result[2], result[3]);
     }
 
+    float[,] ShearMatrixRaw(float k)
+    {
+        return new float[,] {
+        { 1f, k,  0f, 0f },
+        { 0f, 1f, 0f, 0f },
+        { 0f, 0f, 1f, 0f },
+        { 0f, 0f, 0f, 1f }
+    };
+    }
+
     // ---------- 적용 ----------
 
     // 모든 정점에 스케일 → 회전 → 이동을 차례로 적용
     Vector3[] ApplyTRS_Raw(Vector3[] baseVertices, Vector3 t, float angleDegrees, Vector3 s)
     {
-        float[,] T = TranslationMatrixRaw(t);
-        float[,] R = RotationZMatrixRaw(angleDegrees);
-        float[,] S = ScaleMatrixRaw(s);
+        //float[,] T = TranslationMatrixRaw(t);
+        //float[,] R = RotationZMatrixRaw(angleDegrees);
+        //float[,] S = ScaleMatrixRaw(s);
+
+        float[,] H = ShearMatrixRaw(k);
 
         Vector3[] verts = new Vector3[baseVertices.Length];
         for (int i = 0; i < baseVertices.Length; i++)
         {
             Vector4 h = ToHomogeneous(baseVertices[i]);
-            h = MultiplyMatrixVectorRaw(S, h);   // 1. 스케일
-            h = MultiplyMatrixVectorRaw(R, h);   // 2. 회전
-            h = MultiplyMatrixVectorRaw(T, h);   // 3. 이동
+            //h = MultiplyMatrixVectorRaw(S, h);   // 1. 스케일
+            //h = MultiplyMatrixVectorRaw(R, h);   // 2. 회전
+            //h = MultiplyMatrixVectorRaw(T, h);   // 3. 이동
+
+            h = MultiplyMatrixVectorRaw(H, h);
             verts[i] = FromHomogeneous(h);
         }
         return verts;

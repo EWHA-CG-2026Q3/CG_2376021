@@ -29,16 +29,25 @@ public class S09_TRS_Raw_Finish : MonoBehaviour
     // "S, R, T를 차례로 적용 (실행 시나리오)"의 값을 Console에서 확인
     void OnValidate()
     {
-        float[,] T = TranslationMatrixRaw(t);
-        float[,] R = RotationZMatrixRaw(angle);
-        float[,] S = ScaleMatrixRaw(s);
+        //float[,] T = TranslationMatrixRaw(t);
+        //float[,] R = RotationZMatrixRaw(angle);
+        //float[,] S = ScaleMatrixRaw(s);
 
-        Vector4 h = ToHomogeneous(new Vector3(1f, 0f, 0f));
-        Debug.Log($"v = {h}");
-        h = MultiplyMatrixVectorRaw(S, h); Debug.Log($"S 적용 → {h}");
-        h = MultiplyMatrixVectorRaw(R, h); Debug.Log($"R 적용 → {h}");
-        h = MultiplyMatrixVectorRaw(T, h); Debug.Log($"T 적용 → {h}");
-        Debug.Log($"네 번째 성분을 떼면 → {FromHomogeneous(h)}");
+        float[,] H = ShearMatrixRaw(k);
+
+        //Vector4 h = ToHomogeneous(new Vector3(1f, 0f, 0f));
+        //Debug.Log($"v = {h}");
+        //h = MultiplyMatrixVectorRaw(S, h); Debug.Log($"S 적용 → {h}");
+        //h = MultiplyMatrixVectorRaw(R, h); Debug.Log($"R 적용 → {h}");
+        //h = MultiplyMatrixVectorRaw(T, h); Debug.Log($"T 적용 → {h}");
+        //Debug.Log($"네 번째 성분을 떼면 → {FromHomogeneous(h)}");
+
+        Vector3 top = new Vector3(0.5f, 1f, 0.5f);
+        Vector4 h = ToHomogeneous(top);
+        h = MultiplyMatrixVectorRaw(H, h);
+        Vector3 result = FromHomogeneous(h);
+
+        Debug.Log($"k = {k}, 꼭대기 정점: {top} → {result}");
     }
 
     // ---------- 행렬 빌더 ----------

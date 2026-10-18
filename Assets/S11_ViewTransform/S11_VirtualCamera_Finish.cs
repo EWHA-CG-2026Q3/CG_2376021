@@ -59,12 +59,32 @@ public class S11_VirtualCamera_Finish : MonoBehaviour
         }
     }
 
+    Matrix4x4 MultiplyMatrixMatrix(Matrix4x4 A, Matrix4x4 B)
+    {
+        Matrix4x4 result = new Matrix4x4();
+
+        for (int col = 0; col < 4; col++)
+        {
+            Vector4 b = B.GetColumn(col);
+
+            Vector4 column =
+                A.GetColumn(0) * b.x +
+                A.GetColumn(1) * b.y +
+                A.GetColumn(2) * b.z +
+                A.GetColumn(3) * b.w;
+
+            result.SetColumn(col, column);
+        }
+
+        return result;
+    }
+
     // V = R⁻¹ × T⁻¹ : 먼저 이동을 되돌리고(T⁻¹), 그다음 회전을 되돌림(R⁻¹)
     Matrix4x4 BuildViewMatrix(Transform cam)
     {
         Matrix4x4 Tinv = Matrix4x4.Translate(-cam.position);                  // T⁻¹: 이동을 되돌림
         Matrix4x4 Rinv = Matrix4x4.Rotate(Quaternion.Inverse(cam.rotation));  // R⁻¹: 회전을 되돌림
-        return Rinv * Tinv;                                                   // V = R⁻¹ × T⁻¹
+        return MultiplyMatrixMatrix(Rinv, Tinv);                                                   // V = R⁻¹ × T⁻¹
     }
 
     // 카메라(VirtualCamera)가 본 장면을 캔버스에 와이어프레임으로 그림 (매 프레임 호출)
@@ -154,9 +174,9 @@ public class S11_VirtualCamera_Finish : MonoBehaviour
     void OnDrawGizmos()
     {
         Vector3 o = transform.position;                           // 카메라의 기준점
-        Gizmos.color = Color.red;   Gizmos.DrawLine(o, o + transform.right);    // x축: 오른쪽
+        Gizmos.color = Color.red; Gizmos.DrawLine(o, o + transform.right);    // x축: 오른쪽
         Gizmos.color = Color.green; Gizmos.DrawLine(o, o + transform.up);       // y축: 위
-        Gizmos.color = Color.blue;  Gizmos.DrawLine(o, o + transform.forward);  // z축: 바라보는 방향
+        Gizmos.color = Color.blue; Gizmos.DrawLine(o, o + transform.forward);  // z축: 바라보는 방향
 
         float aspect = (float)width / height;                     // 캔버스의 가로세로 비율
         float hx = size * aspect, hy = size;                      // 가로 절반, 세로 절반 (유닛)

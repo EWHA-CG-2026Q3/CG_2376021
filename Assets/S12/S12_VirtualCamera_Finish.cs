@@ -46,6 +46,13 @@ public class S12_VirtualCamera_Finish : MonoBehaviour
         DrawSceneOnCanvas();                             // 모든 오브젝트가 움직인 뒤에 그림
     }
 
+    void OnDestroy()
+    {
+        if (canvas == null) return;
+        if (Application.isPlaying) Destroy(canvas);
+        else DestroyImmediate(canvas);
+    }
+
     // V = R⁻¹ × T⁻¹ : 먼저 이동을 되돌리고(T⁻¹), 그다음 회전을 되돌림(R⁻¹) (S11과 같음)
     Matrix4x4 BuildViewMatrix(Transform cam)
     {

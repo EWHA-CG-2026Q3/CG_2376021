@@ -178,7 +178,7 @@ Light:
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 2
-  m_Range: 40
+  m_Range: 2
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize2D: {x: 0.5, y: 0.5}
@@ -305,9 +305,9 @@ Light:
   m_Type: 0
   m_Color: {r: 0.9622642, g: 0.7822674, b: 0.5355998, a: 1}
   m_Intensity: 3
-  m_Range: 80
-  m_SpotAngle: 30
-  m_InnerSpotAngle: 21.80208
+  m_Range: 5
+  m_SpotAngle: 79.28488
+  m_InnerSpotAngle: 50.551582
   m_CookieSize2D: {x: 0.5, y: 0.5}
   m_Shadows:
     m_Type: 0
@@ -366,12 +366,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 444919346}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -2.30307, y: 4.58, z: 2.11}
+  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1826350213}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!1 &766514004
 GameObject:
@@ -998,6 +998,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 456786, guid: ad16ba337e6ebf446a0805da4781c41d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 343292341}
+    - targetCorrespondingSourceObject: {fileID: 456786, guid: ad16ba337e6ebf446a0805da4781c41d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 444919349}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ad16ba337e6ebf446a0805da4781c41d, type: 3}
 --- !u!4 &1826350213 stripped
@@ -1151,6 +1154,5 @@ SceneRoots:
   - {fileID: 1659912468}
   - {fileID: 942802055}
   - {fileID: 1683399275}
-  - {fileID: 444919349}
   - {fileID: 1826350212}
   - {fileID: 1318889872}

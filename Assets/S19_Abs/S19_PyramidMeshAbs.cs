@@ -19,7 +19,7 @@ public class S19_PyramidMeshAbs : MonoBehaviour
         new Vector3(1f,   0f, 0f),     // 1
         new Vector3(1f,   0f, 1f),     // 2
         new Vector3(0f,   0f, 1f),     // 3
-        new Vector3(0.5f, 1f, 0.5f),   // 4 — 위 꼭짓점
+        new Vector3(0.5f, 0.5f, 0.5f), // 4 — 위 꼭짓점 (높이 0.5: ShotCamera에서 앞면 하이라이트가 보이는 기울기)
     };
 
     Mesh mesh;

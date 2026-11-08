@@ -26,7 +26,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _Ambient: 0.1
-    - _Shininess: 64
+    - _Shininess: 32
     m_Colors:
     - _BaseColor: {r: 1, g: 0.7663, b: 0.2, a: 1}
     - _SpecularColor: {r: 1, g: 1, b: 1, a: 1}

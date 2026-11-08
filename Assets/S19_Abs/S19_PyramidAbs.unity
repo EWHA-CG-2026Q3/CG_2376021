@@ -170,7 +170,7 @@ MonoBehaviour:
   - {x: 1, y: 0, z: 0}
   - {x: 1, y: 0, z: 1}
   - {x: 0, y: 0, z: 1}
-  - {x: 0.5, y: 1, z: 0.5}
+  - {x: 0.5, y: 0.5, z: 0.5}
 --- !u!23 &167630650
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -11753,7 +11753,7 @@ PrefabInstance:
     - target: {fileID: 4964692210161274813, guid: 308ea5717428f664191c39ceaf8bba40, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 435a5c7c110638148b1e06777d791605, type: 2}
+      objectReference: {fileID: 2100000, guid: f131586425ebf604db1386725a617ff8, type: 2}
     - target: {fileID: 8170279681834524895, guid: 308ea5717428f664191c39ceaf8bba40, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
